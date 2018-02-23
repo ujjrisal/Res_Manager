@@ -1,0 +1,102 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<h:body>
+		<ui:composition template="/WEB-INF/templates/common-template_new.xhtml">
+
+			<ui:define name="content">
+
+				<h:form id="insertFrm">
+
+					<rich:panel style="float:right;border:none">
+						<h:commandButton id="btnAddHardware" value="Add Field set"
+							onclick="showHide('sectionhide1'); return false;" />
+					</rich:panel>
+
+					<ui:repeat var="fieldSet" value="#{propertiesForm.fieldsets}">
+						<rich:inplaceInput defaultLabel="#{fieldSet.name}"
+							value="#{fieldSet.name}" showControls="false"
+							controlsHorizontalPosition="left"
+							controlsVerticalPosition="right" id="inplaceInput_#{fieldSet.id}">
+						</rich:inplaceInput>
+
+						<h:commandLink value="Add Fields |"
+							onclick="showHide('newField_#{fieldSet.id}'); return false;"></h:commandLink>
+						<h:commandLink value="Delete |" action="#{propertiesForm.deleteAction}">
+						<f:setPropertyActionListener target="#{propertiesForm.selectedFieldId}" value="#{fieldSet.id}" />
+						</h:commandLink>
+						<h:commandLink value="Save" action = "#{propertiesForm.editAction}">
+						
+					      <f:setPropertyActionListener target="#{propertiesForm.selectedFieldId}" value="#{fieldSet.id}" />
+						</h:commandLink>
+
+
+						<br />
+ 
+						<ui:repeat var="field" value="#{fieldSet.fields}">
+							<rich:inplaceInput defaultLabel="#{field.name}" value="#{field.name}"
+								showControls="false" controlsHorizontalPosition="left"
+								controlsVerticalPosition="right" id="inplaceInputChild">
+							
+							
+							</rich:inplaceInput>
+							<br />
+						</ui:repeat>
+
+						<div id="newField_#{fieldSet.id}"
+							style="display: none; float: left">
+							<br /> <br />
+
+							<h:outputLabel value="Label"></h:outputLabel>
+							<h:inputText value="#{propertiesForm.field.name}"></h:inputText>
+							<br />
+							<h:outputLabel>Type</h:outputLabel>
+							<h:selectOneMenu value="#{propertiesForm.field.type}"
+								onchange="return false;">
+								<f:selectItems value="#{propertiesForm.typeList}" />
+							</h:selectOneMenu>
+							<br></br>
+							<a4j:commandButton value="Add"
+								action="#{propertiesForm.addField}" render="insertFrm"
+								>
+								<f:setPropertyActionListener target="#{propertiesForm.selectedFieldId}"  value="#{fieldSet.id}" />
+							</a4j:commandButton>
+
+						</div>
+					</ui:repeat>
+
+					<div id="sectionhide1" style="display: none; float: left">
+						<h:panelGrid columns="2">
+							<h:inputText id="fieldsetName"
+								value="#{propertiesForm.fieldSetName}" />
+							<a4j:commandButton value="Add" id="addFieldset"
+								action="#{propertiesForm.addFieldSet}" render="insertFrm" />
+						</h:panelGrid>
+					</div>
+
+					<br />
+					<br />
+
+
+					<br />
+					<br />
+
+				</h:form>
+			</ui:define>
+		</ui:composition>
+
+	</h:body>
+
+</ui:composition>
+

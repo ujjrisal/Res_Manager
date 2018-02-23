@@ -1,0 +1,87 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/common-template_new.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+
+
+				<h3 style="color: blue">Create New Role:</h3>
+
+				<h:panelGrid columns="2" style="float: left;">
+
+
+
+					<h:outputText value="Role:" />
+					<h:inputText id="roleName" value="#{rolEditFrm.role.name}" />
+
+				</h:panelGrid>
+
+				<br />
+				<br />
+
+				<rich:panel style="width:560px;">
+					<f:facet name="header">
+						<h:outputText value="permissions pick list"></h:outputText>
+					</f:facet>
+					<rich:pickList value="#{rolEditFrm.selectedPermissions}"
+						sourceCaption="Available Permissions"
+						targetCaption="Selected permissions" listWidth="165px"
+						listHeight="100px" orderable="true">
+						<f:selectItems value="#{rolEditFrm.allPermissions}"
+							var="permission" />
+
+					</rich:pickList>
+				</rich:panel>
+
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<rich:panel style="float:right; border:none">
+
+					<t:saveState value="#{rolEditFrm.role.id}" />
+					<t:saveState value="#{rolEditFrm.action}" />
+
+
+
+
+					<a4j:commandButton value="Save" id="btnSubmit"
+						action="#{rolEditFrm.save}"
+						rendered="#{rolEditFrm.action!='edit'}" />
+
+					<h:commandButton value="Update" id="btnUpdate"
+						action="#{rolEditFrm.updateRole}"
+						rendered="#{rolEditFrm.action=='edit'}" />
+
+					<a4j:commandButton value="cancel" id="btnCancel"
+						action="#{rolEditFrm.cancelAction}" />
+				</rich:panel>
+
+
+
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>
+

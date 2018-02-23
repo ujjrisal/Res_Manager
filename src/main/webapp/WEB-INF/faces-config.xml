@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+	
+	  <application>
+	  <!--     <variable-resolver>
+	         org.springframework.web.jsf.DelegatingVariableResolver
+	      </variable-resolver> -->
+	      
+	        <el-resolver>
+    		    org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		    </el-resolver>
+	      
+	      <locale-config>
+     	        <default-locale>en</default-locale>
+     	        <supported-locale>fr</supported-locale>
+     	   </locale-config>
+	   <resource-bundle>
+		<base-name>de.jura.messages</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+	   </application>
+	   
+	  
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>false</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>signup</from-outcome>
+			<to-view-id>/signup.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>true</from-outcome>
+			<to-view-id>/welcome_new.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>insert.xhtml</display-name>
+		<from-view-id>/insert.xhtml</from-view-id>
+		<!-- <navigation-case>
+			<from-outcome>INSERT_FORM</from-outcome>
+			<to-view-id>/Welcome_New.xhtml</to-view-id>
+		</navigation-case> -->
+	</navigation-rule>
+	
+</faces-config>

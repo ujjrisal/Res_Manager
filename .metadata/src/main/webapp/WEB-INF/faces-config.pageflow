@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14056777808430" configfile="/jura/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14056778367751" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14056778367752 pf14056778367753 pf14056778367754" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf14056778367765" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14056778367752" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" id="pf14056778367766" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14056778367753" path="/signup.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome_new.xhtml" id="pf14056778367767" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14056778367754" path="/welcome_new.xhtml"/>
+  <links id="pf14056778367752" target="pf14056778367765" source="pf14056778367751" outcome="false"/>
+  <links id="pf14056778367753" target="pf14056778367766" source="pf14056778367751" outcome="signup"/>
+  <links id="pf14056778367754" target="pf14056778367767" source="pf14056778367751" outcome="true"/>
+</pageflow:Pageflow>

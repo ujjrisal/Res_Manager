@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="false::#error.xhtml" NAME="output"
+    PATH="/error.xhtml" TARGET="rules:#error.xhtml" TITLE="false" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="signup::#signup.xhtml" NAME="output1"
+    PATH="/signup.xhtml" TARGET="rules:#signup.xhtml" TITLE="signup" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#login.xhtml:1" NAME="item1"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="true::#welcome_new.xhtml" NAME="output"
+    PATH="/welcome_new.xhtml" TARGET="rules:#welcome_new.xhtml"
+    TITLE="true" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#insert.xhtml" PATH="/insert.xhtml"
+  SHAPE="32,417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#insert.xhtml:0" NAME="item"
+   PATH="/insert.xhtml" model-entity="JSFProcessItem"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#signup.xhtml" PATH="/signup.xhtml"
+  SHAPE="272,209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#welcome_new.xhtml" PATH="/welcome_new.xhtml"
+  SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#error.xhtml" PATH="/error.xhtml"
+  SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

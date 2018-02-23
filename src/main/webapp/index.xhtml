@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Resources explorer</title>
+	<h:outputStylesheet name="css/styles.css" />
+</h:head>
+<h:body>
+
+	<div id="header" align="center">Welcome to Rechtswissenschaftlich
+		fäkultät-Jura</div>
+
+	<div>
+		<ul id="menu">
+			<li id="active"></li>
+			<li><a href="insert.xhtml">store hardware</a></li>
+			<li><a href="search.xhtml">search</a></li>
+			<li><a href="beispiel4.htm">roll out</a></li>
+			<li><a href="beispiel5.htm">order new</a></li>
+			<li><a href="index.htm#footer">Export</a></li>
+		</ul>
+	</div>
+
+	<div id="content">
+		<h:panelGrid columns="3">
+			<h:dataTable value="#{resController.getPrimaryResources()}"
+				var="primaryRes" styleClass="resourceTable"
+				headerClass="resourceTableHeader"
+				rowClasses="resourceTableOddRow,resourceTableEvenRow">
+				<h:column>
+					<f:facet name="header">id</f:facet>    				
+            #{primaryRes.id}
+         </h:column>
+				<h:column>
+					<f:facet name="header">Resource_Id</f:facet>
+            #{primaryRes.resource_id}
+         </h:column>
+				<h:column>
+					<f:facet name="header">Resource_name</f:facet>
+            #{primaryRes.resource_name}
+         </h:column>
+				<h:column>
+					<f:facet name="header">Type</f:facet>
+            #{primaryRes.resource_type}
+         </h:column>
+
+				<h:column>
+					<f:facet name="header">Company</f:facet>
+            #{primaryRes.resource_company}
+         </h:column>
+
+				<!-- <h:column>
+				<f:facet name="header">Installation_Date</f:facet>
+            #{primaryRes.installation_date}
+         </h:column> -->
+
+			</h:dataTable>
+
+			<!-- <h:dataTable value="#{resController.secresList}" var="secondaryRes"
+				styleClass="resourceTable" headerClass="resourceTableHeader"
+				rowClasses="resourceTableOddRow,resourceTableEvenRow">
+				<h:column>
+					<f:facet name="header">Type</f:facet>    				
+            #{secondaryRes.type}
+         </h:column>
+				<h:column>
+					<f:facet name="header">Size</f:facet>
+            #{secondaryRes.size}
+         </h:column>
+				<h:column>
+					<f:facet name="header">Company</f:facet>
+            #{secondaryRes.company}
+         </h:column>
+			</h:dataTable>
+			
+			
+ -->
+
+			<!-- <a4j:outputPanel id="res">
+			<rich:panel header="Secondary Resources"
+				rendered="#{not empty resController.getPrimaryResources()}">
+				<rich:list type="unordered"
+					value="#{resController.getPrimaryResources().getSecResList}"
+					var="secl">
+					<h:outputText value="#{secl.type} - #{secl.size} - #{secl.company}" />
+				</rich:list>
+			</rich:panel>
+		</a4j:outputPanel> -->
+		</h:panelGrid>
+
+	</div>
+
+	<div id="footer">
+		<b>Copyright .....</b>
+	</div>
+
+</h:body>
+
+</html>

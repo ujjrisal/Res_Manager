@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<h:body>
+
+	<ui:composition template="/WEB-INF/templates/common-template_new.xhtml">
+
+
+		<ui:define name="content">
+			<h:form>
+
+				<div id="advancedSearch" style="width: 50%;">
+					<rich:panel
+						style="width: 906px; margin-left: 4px; background:#D8D8D8; text-align:center;">
+
+
+
+						<h:outputText value="Company:" />
+
+						<h:selectOneMenu value="#{resController.currentCompanyItem}"
+							onchange="return false;">
+							<f:selectItems value="#{resController.companyList}" />
+
+
+
+						</h:selectOneMenu>
+
+						<h:outputText value="Faculty:" />
+
+						<h:selectOneMenu value="#{resController.currentFacultyItem}"
+							onchange="return false;">
+							<f:selectItems value="#{resController.facultyList}" />
+
+
+
+						</h:selectOneMenu>
+
+						<a4j:commandButton id="compSearch" value="Search"
+							action="#{resController.searchAction}" onClick="return false;"
+							render="table" />
+					</rich:panel>
+				</div>
+
+				<br />
+				<br />
+
+
+				<rich:panel style="border:none; float:right">
+
+					<h:link value="Add new Resource" outcome="insert.xhtml?action=save" rendered="#{request.isUserInRole('create_resource')}"/>
+				</rich:panel>
+
+				<br />
+				<br />
+
+
+
+
+
+				<rich:extendedDataTable value="#{resController.presList}"
+					var="primaryRes" id="table" cellpadding="0" cellspacing="0"
+					width="500px" border="1" rowKeyVar="rkv" selectionMode="single"
+					selection="#{resController.selection}">
+
+					
+
+					<rich:column>
+						<f:facet name="header">Resource_Id</f:facet>
+
+						<a4j:commandLink id="detailedView"
+							action="#{resEditorForm.detailedViewAction}">
+							    <f:setPropertyActionListener target="#{resEditorForm.rowResId}"
+								value="#{primaryRes.resource_id}" />
+            			#{primaryRes.resource_id}
+           			</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">Inventory_ID</f:facet>
+            #{primaryRes.inventory_id}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">Resource_Name</f:facet>
+            #{primaryRes.resource_name}
+         </rich:column>
+					<rich:column>
+						<f:facet name="header">Type</f:facet>
+            #{primaryRes.resource_type}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">Company</f:facet>
+            #{primaryRes.resource_company}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">Ip address</f:facet>
+            #{primaryRes.ip_address}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">MAC address</f:facet>
+            #{primaryRes.mac_address}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">Faculty</f:facet>
+            #{primaryRes.faculty}
+         </rich:column>
+
+					<rich:column>
+						<f:facet name="header">Installation_Date</f:facet>    				
+            #{primaryRes.installation_date}
+         </rich:column>
+
+
+					<rich:column>
+
+
+						<a4j:commandButton id="editBtn" value="Edit"
+							action="#{resEditorForm.editAction}" 
+							rendered="#{request.isUserInRole('edit_resource')}">
+							 <f:setPropertyActionListener target="#{resEditorForm.rowResId}"
+								value="#{primaryRes.resource_id}" />
+						</a4j:commandButton>
+						<h:message styleClass="error-message" for="editBtn" />
+
+						<a4j:commandButton id="deleteBtn" value="Delete"
+							action="#{resEditorForm.deleteAction}" render="table" rendered="#{request.isUserInRole('delete_resource')}">
+							<f:setPropertyActionListener target="#{resEditorForm.rowResId}"
+								value="#{primaryRes.resource_id}" />
+						</a4j:commandButton>
+
+						<h:message styleClass="error-message" for="deleteBtn" />
+
+					</rich:column>
+
+				</rich:extendedDataTable>
+
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+
+
+</html>

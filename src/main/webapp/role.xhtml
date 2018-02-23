@@ -1,0 +1,73 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:body>
+	<!--  <ui:composition template="/WEB-INF/templates/common-template.xhtml">-->
+	<ui:composition template="/WEB-INF/templates/common-template_new.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+
+				<rich:panel style="border:none;">
+
+					<h:link value="Add new Role" outcome="insertrole.xhtml?action=save" />
+				</rich:panel>
+
+				<rich:extendedDataTable value="#{rolEditFrm.allRoles}" var="roles"
+					id="tblRole" cellpadding="0" cellspacing="0" width="25%" border="1">
+
+
+
+
+					<rich:column>
+						<f:facet name="header">Role_Name</f:facet>
+					
+					
+					
+					#{roles.name}
+					
+					</rich:column>
+
+					<rich:column>
+						<a4j:commandButton name="editBtn" value="Edit"
+							action="#{rolEditFrm.editAction}">
+
+							<f:setPropertyActionListener target="#{rolEditFrm.rowRoleId}"
+								value="#{roles.id}" />
+						</a4j:commandButton>
+
+						<a4j:commandButton name="delBtn" value="Delete" render="tblRole"
+							action="#{rolEditFrm.deleteRole}">
+							<f:setPropertyActionListener target="#{rolEditFrm.rowRoleId}"
+								value="#{roles.id}" />
+
+							<!--  <f:param name="roleId" value="#{roles.id}" />-->
+
+						</a4j:commandButton>
+					</rich:column>
+				</rich:extendedDataTable>
+
+
+
+
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>
+
